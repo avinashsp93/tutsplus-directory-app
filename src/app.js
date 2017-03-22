@@ -1,27 +1,10 @@
-var app = angular.module('ContactsApp', [])
+angular.module('ContactsApp', ['ngRoute'])
+    .config(function ($routeProvider, $locationProvider) {
+        $routeProvider
+            .when('/contacts', {
+                controller: 'ListController',
+                templateUrl: 'views/list.html'
+            });
 
-app.controller('ListController', ['$scope', 'ContactSer', function ($scope, ContactService) {
-    console.log('In controller');;
-    var result = ContactService.empDetails();
-}]);
-
-app.service('contactSer', function($http){
-  console.log('In service');
-  var empDetails = function(){
-    var data = undefined;
-    $http({
-      method: 'POST',
-      url: 'php/middleware.php',
-      data: $.param({
-        "flag":"populateEmployeeDetails",
-      }),
-      headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'}
-    }).then(function(response){
-      data = response.data;
-      console.log(data);
-    }, function(error) {
-      data = error;
+        $locationProvider.hashPrefix('');
     });
-    return data;
-  }
-});
