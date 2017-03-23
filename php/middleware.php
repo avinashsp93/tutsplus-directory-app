@@ -9,7 +9,7 @@ case 'POST': $flag = $_POST["flag"]; break;
 }
 
 if($flag == 'populateEmployeeDetails') {
-  $result = mysqli_query($connect, "SELECT * FROM directory LIMIT 0 , 3");
+  $result = mysqli_query($connect, "SELECT * FROM directory LIMIT 0 , 10");
   $data = array();
   while ($row = mysqli_fetch_array($result)) {
     $data[] = $row;

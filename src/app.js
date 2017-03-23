@@ -4,7 +4,9 @@ angular.module('ContactsApp', ['ngRoute'])
             .when('/contacts', {
                 controller: 'ListController',
                 templateUrl: 'views/list.html'
+            })
+            .otherwise({
+                redirectTo: '/'
             });
-
         $locationProvider.hashPrefix('');
     });

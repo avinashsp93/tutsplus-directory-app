@@ -1,11 +1,16 @@
 angular.module('ContactsApp')
-.controller('ListController', ['$scope', 'ContactService', function ($scope, ContactService) {
-    console.log('In controller');;
+.controller('MainController', function () {
 
-    $scope.loadTable = function () {
-        $scope.contacts = ContactService.empDetails();
-        console.log($scope.contacts);
-    };
+})
+
+.controller('ListController', ['$scope', 'ContactService', function ($scope, ContactService) {
+    console.log('In controller');
+
+    ContactService.empDetails().then(function(response){
+        $scope.contacts = response.data;
+    }, function(error) {
+        console.log(error);
+    });
 
     $scope.fields = ['first_name', 'last_name'];
     $scope.query = "";
