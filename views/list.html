@@ -4,16 +4,17 @@
   <thead>
     <tr>
       <th ng-repeat="field in fields" ng-click="sort(field)">
-          {{field}}
+          {{field | Capitalize}}
           <span ng-show="sort.field === field && !sort.order" class="glyphicon glyphicon-chevron-down"></span>
           <span ng-show="sort.field === field && sort.order" class="glyphicon glyphicon-chevron-up"></span>
       </th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="contact in contacts">
-        <td>{{contact.first_name}}</td>
-        <td>{{contact.last_name}}</td>
+    <tr ng-repeat="contact in contacts | filter: query | orderBy: sort.field: sort.order" ng-click="show($index)">
+        <td ng-repeat="field in fields">
+            {{contact[field]}}
+        </td>
     </tr>
   </tbody>
 </table>
